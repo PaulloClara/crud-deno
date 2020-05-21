@@ -1,10 +1,9 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
+import { routes } from "./router.ts";
 
 const server = new Application();
 
-server.use(ctx => {
-  ctx.response.body = "Hello World!";
-});
+server.use(routes);
 
 const opts = { port: 3000 };
 
