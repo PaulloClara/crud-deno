@@ -1,0 +1,8 @@
+{
+  "name": "crud-deno",
+  "version": "0.1.0",
+  "main": "src/server.ts",
+  "repository": "https://github.com/paulloclara/crud-api-deno-ts",
+  "author": "paulloclara <paulloclara@gmail.com>",
+  "license": "MIT"
+}
