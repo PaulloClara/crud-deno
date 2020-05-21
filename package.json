@@ -4,5 +4,13 @@
   "main": "src/server.ts",
   "repository": "https://github.com/paulloclara/crud-api-deno-ts",
   "author": "paulloclara <paulloclara@gmail.com>",
+  "scripts": {
+    "start": "deno run src/server.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^3.9.3",
+    "typescript-deno-plugin": "^1.29.0"
+  },
   "license": "MIT"
 }
