@@ -5,3 +5,9 @@ export class Home {
     response.body = "Hello World!";
   }
 }
+
+export class User {
+  static index({ response }: RouterContext): void {
+    response.body = [{ user: "User" }];
+  }
+}
