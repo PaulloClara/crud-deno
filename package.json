@@ -5,7 +5,8 @@
   "repository": "https://github.com/paulloclara/crud-api-deno-ts",
   "author": "paulloclara <paulloclara@gmail.com>",
   "scripts": {
-    "start": "deno run --allow-net src/server.ts"
+    "start": "deno run --allow-net src/server.ts",
+    "dev": "denon"
   },
   "dependencies": {},
   "devDependencies": {
