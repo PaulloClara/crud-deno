@@ -2,7 +2,7 @@
   "name": "crud-deno",
   "version": "0.1.0",
   "main": "src/server.ts",
-  "repository": "https://github.com/paulloclara/crud-api-deno-ts",
+  "repository": "https://github.com/PaulloClara/crud-deno.git",
   "author": "paulloclara <paulloclara@gmail.com>",
   "scripts": {
     "start": "deno run --allow-net --allow-read --allow-write --allow-plugin --unstable src/server.ts",
