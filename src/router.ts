@@ -1,10 +1,11 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
-import { Home, User } from "./controllers.ts";
+import { HomeController, UserController } from "./controllers.ts";
 
 const router = new Router();
 
-router.get("/", Home.index);
-router.get("/users", User.index);
+router.get("/", HomeController.index);
+router.get("/users", UserController.index);
+router.post("/users", UserController.store);
 
 export const routes = router.routes();
 export default router;
