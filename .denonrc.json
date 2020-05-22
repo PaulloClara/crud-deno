@@ -6,7 +6,13 @@
   "extensions": [".js", ".ts", ".json"],
   "interval": 500,
   "watch": ["src/"],
-  "deno_args": ["--allow-net"],
+  "deno_args": [
+    "--allow-net",
+    "--allow-read",
+    "--allow-write",
+    "--allow-plugin",
+    "--unstable"
+  ],
   "execute": {
     ".js": ["deno", "run"],
     ".ts": ["deno", "run"]
