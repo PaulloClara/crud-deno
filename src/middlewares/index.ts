@@ -1,7 +1,7 @@
 import { RouterContext, Body } from "https://deno.land/x/oak/mod.ts";
 
 export interface RouterContextJSON extends RouterContext {
-  json: object;
+  json: any;
 }
 
 export async function handleJSONMiddleware(

@@ -1,3 +1,5 @@
+import { hashPassword, comparePassword } from "../services/bcrypt.ts";
+
 import { UserModel, UserFields } from "../models/user.ts";
 import { RouterContextJSON } from "../middlewares/index.ts";
 import { RouterContext } from "https://deno.land/x/oak/mod.ts";
@@ -13,6 +15,8 @@ export class UserController {
 
     if (!UserModel.isValid(json))
       return (response.body = { error: "invalid fields" });
+
+    json.password = await hashPassword(json.password);
 
     const _id = await UserModel.insertOne(json);
     const user: UserFields = await UserModel.findOne({ _id });
