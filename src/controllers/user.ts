@@ -1,5 +1,6 @@
 import { UserModel, UserFields } from "../models/user.ts";
-import { RouterContext, Body } from "https://deno.land/x/oak/mod.ts";
+import { RouterContextJSON } from "../middlewares/index.ts";
+import { RouterContext } from "https://deno.land/x/oak/mod.ts";
 
 export class UserController {
   static async index({ response }: RouterContext): Promise<any> {
@@ -7,29 +8,22 @@ export class UserController {
     response.body = user;
   }
 
-  static async store({ request, response }: RouterContext): Promise<any> {
-    const { value: fields }: Body = await request.body({
-      contentTypes: { json: [] }
-    });
+  static async store(context: RouterContextJSON): Promise<any> {
+    const { response, json } = context;
 
-    if (!UserModel.isValid(fields))
+    if (!UserModel.isValid(json))
       return (response.body = { error: "invalid fields" });
 
-    const _id = await UserModel.insertOne(fields);
+    const _id = await UserModel.insertOne(json);
     const user: UserFields = await UserModel.findOne({ _id });
 
     response.body = user;
   }
 
-  static async update(context: RouterContext): Promise<any> {
-    const { request, response, params } = context;
+  static async update(context: RouterContextJSON): Promise<any> {
+    const { response, params, json } = context;
 
-    const { value: fields }: Body = await request.body({
-      contentTypes: { json: [] }
-    });
-
-    await UserModel.updateOne({ _id: { $oid: params.id } }, { $set: fields });
-
+    await UserModel.updateOne({ _id: { $oid: params.id } }, { $set: json });
     response.body = { status: "OK" };
   }
 
