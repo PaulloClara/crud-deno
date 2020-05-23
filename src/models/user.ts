@@ -1,7 +1,7 @@
 import { Client } from "../services/mongodb.ts";
 import { Collection } from "https://deno.land/x/mongo/mod.ts";
 
-export interface User {
+export type UserFields = {
   _id?: string;
   name: string;
   surname: string;
@@ -9,14 +9,20 @@ export interface User {
   email: string;
   password: string;
   createdAt?: Date;
-}
+};
 
 class UserCollection extends Collection {
   constructor() {
     super(Client, "CrudDeno", "users");
   }
 
-  isValid({ name, surname, username, email, password }: User | any): boolean {
+  isValid({
+    name,
+    surname,
+    username,
+    email,
+    password
+  }: UserFields | any): boolean {
     if (name && surname && username && email && password) return true;
     return false;
   }
