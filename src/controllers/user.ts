@@ -32,4 +32,12 @@ export class UserController {
 
     response.body = { status: "OK" };
   }
+
+  static async destroy(context: RouterContext): Promise<any> {
+    const { response, params } = context;
+
+    await UserModel.deleteOne({ _id: { $oid: params.id } });
+
+    response.body = { status: "OK" };
+  }
 }

@@ -9,6 +9,7 @@ router.get("/", HomeController.index);
 router.get("/users", UserController.index);
 router.post("/users", UserController.store);
 router.put("/users/:id", UserController.update);
+router.delete("/users/:id", UserController.destroy);
 
 export const routes = router.routes();
 export default router;
