@@ -1,11 +1,5 @@
-import { UserModel, User } from "./models.ts";
+import { UserModel, User } from "../models/user.ts";
 import { RouterContext, Body } from "https://deno.land/x/oak/mod.ts";
-
-export class HomeController {
-  static index({ response }: RouterContext): void {
-    response.body = "Hello World!";
-  }
-}
 
 export class UserController {
   static async index({ response }: RouterContext): Promise<any> {
