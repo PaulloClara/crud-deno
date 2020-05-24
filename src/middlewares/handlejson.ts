@@ -1,11 +1,8 @@
-import { RouterContext, Body } from "https://deno.land/x/oak/mod.ts";
-
-export interface RouterContextJSON extends RouterContext {
-  json: any;
-}
+import { Context } from "../router/utils.ts";
+import { Body } from "https://deno.land/x/oak/mod.ts";
 
 export async function handleJSONMiddleware(
-  context: RouterContextJSON,
+  context: Context,
   next: Function
 ): Promise<any> {
   const { value: json }: Body = await context.request.body({

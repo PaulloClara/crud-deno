@@ -7,7 +7,8 @@ export type UserFields = {
   surname: string;
   username: string;
   email: string;
-  password: string | undefined;
+  password: string;
+  token?: string;
   createdAt?: Date;
 };
 

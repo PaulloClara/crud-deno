@@ -1,5 +1,5 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
-import { routes } from "./router.ts";
+import { routes } from "./router/index.ts";
 
 const server = new Application();
 
