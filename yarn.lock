@@ -114,14 +114,14 @@ shallow-clone@^0.1.2:
     mixin-object "^2.0.1"
 
 typescript-deno-plugin@^1.29.0:
-  version "1.29.0"
-  resolved "https://registry.yarnpkg.com/typescript-deno-plugin/-/typescript-deno-plugin-1.29.0.tgz#7a7d0735b53292380c07a10e89778e5e7c45a346"
-  integrity sha512-3GhWWhN0pPWWzrBLKPp2c4LNbR5urJbE3Yi7ScuyUM/wZg9n+B8H9LkEZpBskoEq4hDfN2YCMFzcmaGat56fQA==
+  version "1.31.0"
+  resolved "https://registry.yarnpkg.com/typescript-deno-plugin/-/typescript-deno-plugin-1.31.0.tgz#7e354c1b30328707ac1d2ea724355d24db5c72f2"
+  integrity sha512-IoF5c8EubyNgjxxarguZfMx8Ph9Av9XqjySop0orepXv8wr02ND3DNNDFFdQyZfQAAcv1/v/u14MQIp8Os4c1w==
   dependencies:
     import-maps "^0.2.1"
     merge-deep "^3.0.2"
 
 typescript@^3.9.3:
-  version "3.9.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
-  integrity sha512-D/wqnB2xzNFIcoBG9FG8cXRDjiqSTbG2wd8DMZeQyJlP1vfTkIxH4GKveWaEBYySKIg+USu+E+EDIR47SqnaMQ==
+  version "3.9.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.5.tgz#586f0dba300cde8be52dd1ac4f7e1009c1b13f36"
+  integrity sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==

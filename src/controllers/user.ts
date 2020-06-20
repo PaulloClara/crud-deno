@@ -1,35 +1,38 @@
+import { Context } from "../router.ts";
+import { UserModel, UserType } from "../models/user.ts";
+
 import { makeJWT } from "../services/jwt.ts";
 import { hashPassword, comparePassword } from "../services/bcrypt.ts";
 
-import { Context } from "../router/utils.ts";
-import { UserModel, UserFields } from "../models/user.ts";
-
 export class UserController {
-  static async index({ response }: Context): Promise<any> {
-    const users: [UserFields] = await UserModel.find();
+  static async index({ response }: Context): Promise<void> {
+    const users: [UserType] = await UserModel.find();
 
-    users.forEach(user => (user.password = ""));
+    users.forEach(user => (user.password = undefined));
     response.body = users;
   }
 
-  static async store(context: Context): Promise<any> {
+  static async store(context: Context): Promise<void> {
     const { response, json } = context;
 
-    if (!UserModel.isValid(json))
-      return (response.body = { error: "invalid fields" });
+    if (!UserModel.isValid(json)) {
+      response.body = { error: "invalid fields" };
+
+      return;
+    }
 
     json.password = await hashPassword(json.password);
 
     const _id: string = await UserModel.insertOne(json);
-    const user: UserFields = await UserModel.findOne({ _id });
+    const user: UserType = await UserModel.findOne({ _id });
 
     user.token = await makeJWT({ id: _id });
-    user.password = "";
+    user.password = undefined;
 
     response.body = user;
   }
 
-  static async update(context: Context): Promise<any> {
+  static async update(context: Context): Promise<void> {
     const { request, response, json } = context;
 
     const _id: string = request.headers.get("id") || "";
@@ -38,7 +41,7 @@ export class UserController {
     response.body = { status: "OK" };
   }
 
-  static async destroy(context: Context): Promise<any> {
+  static async destroy(context: Context): Promise<void> {
     const { request, response } = context;
 
     const _id: string = request.headers.get("id") || "";
@@ -49,18 +52,21 @@ export class UserController {
 }
 
 export class SessionController {
-  static async store(context: Context): Promise<any> {
+  static async store(context: Context): Promise<void> {
     const { response, params, json } = context;
 
-    const user: UserFields = await UserModel.findOne({
+    const user: UserType = await UserModel.findOne({
       _id: { $oid: params.id }
     });
 
-    if (!(await comparePassword(json.password, user.password)))
-      return (response.body = { error: "Password Error" });
+    if (!(await comparePassword(json.password, user.password || ""))) {
+      response.body = { error: "Password Error" };
+
+      return;
+    }
 
     user.token = await makeJWT({ id: params.id });
-    user.password = "";
+    user.password = undefined;
 
     response.body = user;
   }

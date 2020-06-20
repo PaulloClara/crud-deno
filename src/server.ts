@@ -1,11 +1,10 @@
-import { Application } from "https://deno.land/x/oak/mod.ts";
-import { routes } from "./router/index.ts";
+import { Application, ListenOptions } from "https://deno.land/x/oak/mod.ts";
+import { routes } from "./router.ts";
 
-const server = new Application();
+const server: Application = new Application();
+const options: ListenOptions = { port: 3000 };
 
 server.use(routes);
 
-const opts = { port: 3000 };
-
-server.listen(opts);
-console.log(`\n\n\tServer running on http://localhost:${opts.port}`);
+server.listen(options);
+console.log(`\n\n\tServer running on http://localhost:${options.port}`);

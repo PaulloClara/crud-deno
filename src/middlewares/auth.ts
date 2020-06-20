@@ -1,10 +1,7 @@
-import { Context } from "../router/utils.ts";
+import { Context } from "../router.ts";
 import { validateJWT } from "../services/jwt.ts";
 
-export async function authMiddleware(
-  context: Context,
-  next: Function
-): Promise<any> {
+export default async function(context: Context, next: Function): Promise<void> {
   try {
     const auth = context.request.headers.get("authorization") || "";
     const token = auth.replace("Bearer ", "");

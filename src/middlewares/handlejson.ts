@@ -1,14 +1,15 @@
-import { Context } from "../router/utils.ts";
-import { Body } from "https://deno.land/x/oak/mod.ts";
+import { Context } from "../router.ts";
+import { Body, BodyOptions } from "https://deno.land/x/oak/mod.ts";
 
-export async function handleJSONMiddleware(
-  context: Context,
-  next: Function
-): Promise<any> {
-  const { value: json }: Body = await context.request.body({
-    contentTypes: { json: [] }
-  });
-  context.json = json;
+export default async function(context: Context, next: Function): Promise<void> {
+  try {
+    const options: BodyOptions = { contentTypes: { json: [] } };
+    const { value }: Body = await context.request.body(options);
 
-  await next();
+    context.json = value;
+
+    await next();
+  } catch (error) {
+    console.error(error);
+  }
 }
