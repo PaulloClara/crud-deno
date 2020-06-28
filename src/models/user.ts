@@ -2,14 +2,15 @@ import { Client } from "../services/mongodb.ts";
 import { Collection } from "https://deno.land/x/mongo/mod.ts";
 
 export type UserType = {
-  _id?: string;
+  _id?: any;
+  id?: string;
   name: string;
   surname: string;
   username: string;
   email: string;
   password?: string;
   token?: string;
-  createdAt?: Date;
+  createdAt?: string;
 };
 
 class UserCollection extends Collection {
